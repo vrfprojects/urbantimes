@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flip and Ask – Better conversations, one card at a time</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #3949ab;
+      --brand-dark: #1a237e;
+      --brand-light: #7986cb;
+      --accent: #ffb300;
+      --text: #1a1a2e;
+      --muted: #5c5c7a;
+      --bg: #f7f7fc;
+      --card-bg: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand) 60%, var(--brand-light) 100%);
+      color: #fff;
+      padding: 80px 24px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* decorative blobs */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.12;
+      background: #fff;
+    }
+    .hero::before { width: 420px; height: 420px; top: -120px; left: -100px; }
+    .hero::after  { width: 300px; height: 300px; bottom: -80px; right: -60px; }
+
+    /* floating cards decoration */
+    .cards-deco {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .card-chip {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(4px);
+      border-radius: 16px;
+      padding: 16px 20px;
+      font-family: 'Fraunces', serif;
+      font-size: 13px;
+      color: #fff;
+      line-height: 1.4;
+      max-width: 150px;
+      text-align: center;
+      animation: float 4s ease-in-out infinite;
+    }
+    .card-chip:nth-child(2) { animation-delay: 0.8s; }
+    .card-chip:nth-child(3) { animation-delay: 1.6s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .hero-label {
+      display: inline-block;
+      background: var(--accent);
+      color: #1a1a2e;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(42px, 8vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero .tagline {
+      font-size: clamp(16px, 3vw, 20px);
+      opacity: 0.88;
+      max-width: 480px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .play-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      color: var(--brand-dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 14px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      position: relative;
+      z-index: 1;
+    }
+    .play-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.24);
+    }
+    .play-btn svg { flex-shrink: 0; }
+
+    /* ── DESCRIPTION ── */
+    .section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 12px;
+    }
+
+    .section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .section p {
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    /* ── DECKS GRID ── */
+    .decks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .deck-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 2px 14px rgba(57,73,171,0.08);
+      border: 1px solid rgba(57,73,171,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .deck-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(57,73,171,0.14);
+    }
+    .deck-icon { font-size: 36px; margin-bottom: 12px; }
+    .deck-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--text);
+    }
+    .deck-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* ── HOW TO PLAY ── */
+    .how-section {
+      background: linear-gradient(135deg, var(--brand-dark), var(--brand));
+      color: #fff;
+      padding: 80px 24px;
+    }
+
+    .how-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .how-inner .section-label { color: var(--accent); }
+    .how-inner h2 { color: #fff; margin-bottom: 48px; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+
+    .step { display: flex; flex-direction: column; gap: 12px; }
+    .step-num {
+      font-family: 'Fraunces', serif;
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .step h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .step p { font-size: 15px; opacity: 0.82; line-height: 1.6; }
+
+    /* ── CTA BOTTOM ── */
+    .cta-section {
+      text-align: center;
+      padding: 80px 24px;
+    }
+    .cta-section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 900;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    .cta-section p {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--brand);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 16px 32px;
+      border-radius: 14px;
+      box-shadow: 0 6px 24px rgba(57,73,171,0.28);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+    .cta-btn:hover {
+      background: var(--brand-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(57,73,171,0.38);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(57,73,171,0.10);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    footer a {
+      color: var(--brand);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover { text-decoration: underline; }
+    footer .sep { margin: 0 10px; opacity: 0.4; }
+
+    @media (max-width: 480px) {
+      .cards-deco { gap: 10px; }
+      .card-chip { font-size: 11px; padding: 12px 14px; max-width: 110px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="cards-deco">
+      <div class="card-chip">🌊 "What would you do if you had one day left?"</div>
+      <div class="card-chip">😂 "What's the most embarrassing thing you've done?"</div>
+      <div class="card-chip">💕 "What first made you fall for me?"</div>
+    </div>
+    <div class="hero-label">Now on Google Play</div>
+    <h1>Flip and <em>Ask</em></h1>
+    <p class="tagline">Better conversations, one card at a time.</p>
+    <a href="#" class="play-btn">
+      <!-- Google Play logo -->
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.61 3 21.09 3 20.5Z" fill="#EA4335"/>
+        <path d="M16.81 15.12L6.05 21.34L13.69 12L16.81 15.12Z" fill="#FBBC05"/>
+        <path d="M20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L14.54 11.15L17.89 9.5L20.16 10.81Z" fill="#FFCD00"/>
+        <path d="M6.05 2.66L16.81 8.88L13.69 12L6.05 2.66Z" fill="#34A853"/>
+      </svg>
+      Get it on Google Play
+    </a>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section">
+    <p class="section-label">About the game</p>
+    <h2>Pass the phone.<br>Answer the question.</h2>
+    <p>Flip and Ask is a pass-and-play card game for <strong>2–6 players</strong>. Choose from multiple question decks — Fun, Deep, Funny, Couples, and more — and take turns flipping cards with thought-provoking or hilarious questions. No Wi-Fi needed. No accounts. Just great conversations.</p>
+
+    <div class="decks">
+      <div class="deck-card">
+        <div class="deck-icon">😂</div>
+        <div class="deck-name">Funny</div>
+        <div class="deck-desc">Laugh until it hurts</div>
+      </div>
+      <div class="deck-card">
+        <div class="deck-icon">🌊</div>
+        <div class="deck-name">Deep</div>
+        <div class="deck-desc">Real talk, real connections</div>
+      </div>
+      <div class="deck-card">
+        <div class="deck-icon">🎉</div>
+        <div class="deck-name">Fun</div>
+        <div class="deck-desc">Lighthearted & playful</div>
+      </div>
+      <div class="deck-card">
+        <div class="deck-icon">💕</div>
+        <div class="deck-name">Couples</div>
+        <div class="deck-desc">Closer than ever</div>
+      </div>
+      <div class="deck-card">
+        <div class="deck-icon">✨</div>
+        <div class="deck-name">& More</div>
+        <div class="deck-desc">New decks coming soon</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO PLAY -->
+  <section class="how-section">
+    <div class="how-inner">
+      <p class="section-label">How it works</p>
+      <h2>Three steps to better conversations</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Pick a Deck</h3>
+          <p>Choose the vibe — hilarious, heartfelt, or somewhere in between.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Flip a Card</h3>
+          <p>Pass the phone around. Each player flips to reveal their question.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Answer & Pass</h3>
+          <p>Answer honestly (or hilariously), then hand it to the next person.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to play?</h2>
+    <p>Free to download. No sign-up required.</p>
+    <a href="#" class="cta-btn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.61 3 21.09 3 20.5Z" fill="#EA4335"/>
+        <path d="M16.81 15.12L6.05 21.34L13.69 12L16.81 15.12Z" fill="#FBBC05"/>
+        <path d="M20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L14.54 11.15L17.89 9.5L20.16 10.81Z" fill="#FFCD00"/>
+        <path d="M6.05 2.66L16.81 8.88L13.69 12L6.05 2.66Z" fill="#34A853"/>
+      </svg>
+      Download on Google Play
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      © 2026 Flip and Ask
+      <span class="sep">|</span>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <span class="sep">|</span>
+      <a href="mailto:vrlekker@gmail.com">Contact</a>
+    </p>
+  </footer>
+
+</body>
+</html>
