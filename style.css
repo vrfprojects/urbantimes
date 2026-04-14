@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap');
+
+:root {
+  --color-bg: #F8F9FA; /* Off-white for section backgrounds */
+  --color-surface: #FFFFFF; /* Pure white for cards */
+  --color-brand: #2E3A8C; /* Royal Blue */
+  --color-primary: #2E3A8C; /* Kept for legacy inline styles */
+  --color-accent: #FFC425; /* Punchy Gold */
+  --color-text: #212529; /* Dark Charcoal body text */
+  --color-text-muted: #6c757d;
+  --color-border: #e9ecef;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Outfit', sans-serif;
+  color: #1a1d20;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--color-brand);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+/* Card Container (replacing dark glassmorphism) */
+.glass-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 10px 30px rgba(46, 58, 140, 0.05);
+  border-radius: 12px;
+  padding: 2.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(46, 58, 140, 0.12);
+  border-color: rgba(46, 58, 140, 0.1);
+}
+
+/* Navigation - Clean White */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 5%;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-logo {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  line-height: 1;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+  transform: scale(1.02);
+}
+
+.brand-text {
+  color: var(--color-brand);
+  display: inline-block;
+}
+
+.brand-tagline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  color: var(--color-brand);
+  opacity: 0.8;
+  margin-top: 6px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--color-text);
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-links a:not(.btn-primary)::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--color-brand);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:not(.btn-primary):hover::after {
+  width: 100%;
+}
+
+/* Buttons */
+.nav-links a.btn-primary {
+  color: #fff;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.75rem 1.7rem;
+  background: var(--color-brand);
+  color: #ffffff !important;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(46, 58, 140, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: #252e70;
+  box-shadow: 0 6px 20px rgba(46, 58, 140, 0.4);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+/* Hero Section (Royal Blue) */
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rem 5% 6rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--color-brand) 0%, #1e265c 100%);
+  color: #ffffff;
+}
+
+.hero-content {
+  max-width: 800px;
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+  font-size: 4rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.hero h1 span {
+  color: var(--color-accent);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 2.5rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.hero-buttons .btn-primary {
+  background: var(--color-accent);
+  color: #000 !important;
+  box-shadow: 0 4px 15px rgba(255, 196, 37, 0.3);
+}
+
+.hero-buttons .btn-primary:hover {
+  background: #e6b020;
+}
+
+/* Sections */
+section {
+  padding: 6rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+  color: var(--color-brand);
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--color-accent);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+/* Grid Layouts */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 4rem;
+  align-items: center;
+}
+
+.service-card h3 {
+  color: var(--color-brand);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.glass-panel h2, .glass-panel h3 {
+  color: var(--color-brand) !important;
+}
+
+.service-card p {
+  color: var(--color-text-muted);
+}
+
+/* Forms - Clean Theme */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  appearance: none;
+}
+
+.form-group select option {
+  background: #ffffff;
+  color: var(--color-text);
+}
+
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  outline: none;
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgba(46, 58, 140, 0.15);
+}
+
+/* Footer (Royal Blue) */
+footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--color-brand);
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 4rem;
+}

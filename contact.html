@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | UrbanTimes</title>
+    
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="logo-container">
+        <a href="/" class="brand-logo">
+          <span class="brand-text">UrbanTimes</span>
+          <span class="brand-tagline">INNOVATION &bull; TECHNOLOGY &bull; FUTURE</span>
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About Us</a>
+        <a href="/services.html">Services</a>
+        <a href="/contact.html" class="btn-primary">Get Started</a>
+      </div>
+    </nav>
+
+    <header class="hero" style="min-height: 40vh; padding-top: 10rem; padding-bottom: 2rem;">
+      <div class="hero-content">
+        <h1>Let's <span>Connect</span></h1>
+        <p>Ready to automate your business and scale? Reach out below.</p>
+      </div>
+    </header>
+
+    <section id="contact-form-card" style="padding-top: 0; max-width: 800px; margin: 0 auto;">
+      <div class="glass-panel">
+        
+        <!-- Success Message UI -->
+        <div id="contact-success-msg" style="display: none; text-align: center; padding: 2rem;">
+          <svg style="width: 80px; height: 80px; color: var(--color-brand); margin: 0 auto 1.5rem; display: block;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <h2 style="color: var(--color-brand); margin-bottom: 1rem;">Message Sent, <span id="contact-success-name"></span>!</h2>
+          <p style="color: var(--color-text-muted); font-size: 1.1rem; margin-bottom: 2rem;">We have successfully received your inquiry. Our team will review your details and contact you shortly.</p>
+          <button type="button" class="btn-outline" onclick="window.location.reload();" style="color: var(--color-brand); border-color: var(--color-brand);">Send Another Message</button>
+        </div>
+
+        <!-- Form Interface -->
+        <form id="contact-form-content">
+          <div id="global-error" style="color: #d9534f; margin-bottom: 1rem; display: none; text-align: center; font-weight: 500; background: rgba(217, 83, 79, 0.05); padding: 0.8rem; border-radius: 6px; border: 1px solid rgba(217, 83, 79, 0.2);"></div>
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required placeholder="Sipho Ndlovu">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="hello@yourbusiness.co.za">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+27 82 123 4567">
+          </div>
+          <div class="form-group">
+            <label for="province">Province</label>
+            <select id="province" name="province" required>
+              <option value="" disabled selected>Select your province...</option>
+              <option value="Gauteng">Gauteng</option>
+              <option value="Western Cape">Western Cape</option>
+              <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+              <option value="Eastern Cape">Eastern Cape</option>
+              <option value="Free State">Free State</option>
+              <option value="Mpumalanga">Mpumalanga</option>
+              <option value="North West">North West</option>
+              <option value="Northern Cape">Northern Cape</option>
+              <option value="Limpopo">Limpopo</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">How can we help you?</label>
+            <textarea id="message" name="message" rows="5" required placeholder="I'd like to hear about automating my business workflow..."></textarea>
+          </div>
+          <button type="submit" id="submitBtn" class="btn-primary" style="margin-top: 1rem; width: 100%;">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 UrbanTimes. All rights reserved.</p>
+    </footer>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
