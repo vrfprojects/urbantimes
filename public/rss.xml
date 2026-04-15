@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UrbanTimes</title>
+    <link>https://urbantimes.co.za/</link>
+    <description>Enterprise-Grade Tech and AI Automation tailored for small businesses.</description>
+    <language>en-us</language>
+    <atom:link href="https://urbantimes.co.za/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Welcome to UrbanTimes</title>
+      <link>https://urbantimes.co.za/</link>
+      <description>We empower small businesses with stunning websites and automated digital solutions that drive real growth.</description>
+      <pubDate>Mon, 13 Apr 2026 12:00:00 GMT</pubDate>
+      <guid>https://urbantimes.co.za/#welcome</guid>
+    </item>
+    <item>
+      <title>AI &amp; Process Automation Services</title>
+      <link>https://urbantimes.co.za/services.html#ai-automation</link>
+      <description>Build custom software and AI solutions to completely automate tedious tasks like manual data entry, generating invoices by hand, and building Excel reports.</description>
+      <pubDate>Tue, 14 Apr 2026 12:00:00 GMT</pubDate>
+      <guid>https://urbantimes.co.za/services.html#ai-automation</guid>
+    </item>
+  </channel>
+</rss>
