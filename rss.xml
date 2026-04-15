@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>UrbanTimes</title>
+  <link>https://urbantimes.co.za/</link>
+  <description>Enterprise-Grade Tech &amp; AI Automation for Small Business</description>
+  <atom:link href="https://urbantimes.co.za/rss.xml" rel="self" type="application/rss+xml" />
+  <language>en-za</language>
+  <item>
+    <title>Enterprise-Grade Tech for Small Businesses</title>
+    <link>https://urbantimes.co.za/services.html</link>
+    <description>Discover how UrbanTimes empowers small businesses with custom web development and smart AI automation. Bridging the gap between enterprise capabilities and small business realities.</description>
+    <guid>https://urbantimes.co.za/services.html</guid>
+  </item>
+  <item>
+    <title>The Founder's Journey</title>
+    <link>https://urbantimes.co.za/about.html</link>
+    <description>After 20 years in Banking and Airlines, we are bringing enterprise-grade technology to small businesses.</description>
+    <guid>https://urbantimes.co.za/about.html</guid>
+  </item>
+</channel>
+</rss>
